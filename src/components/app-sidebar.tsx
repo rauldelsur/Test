@@ -1,6 +1,8 @@
 'use client'
 
 import { signOut } from 'next-auth/react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 import {
   LayoutDashboard,
@@ -24,23 +26,18 @@ import {
   SidebarFooter,
 } from '@/components/ui/sidebar'
 
-export type ActiveView = 'dashboard' | 'projects' | 'quotes' | 'products' | 'clients' | 'settings'
-
 const navItems = [
-  { id: 'dashboard' as ActiveView, label: 'Panel', icon: LayoutDashboard },
-  { id: 'projects' as ActiveView, label: 'Obras', icon: FileText },
-  { id: 'quotes' as ActiveView, label: 'Presupuestos', icon: FileText },
-  { id: 'products' as ActiveView, label: 'Productos', icon: Package },
-  { id: 'clients' as ActiveView, label: 'Clientes', icon: Users },
-  { id: 'settings' as ActiveView, label: 'Configuración', icon: Settings },
+  { href: '/dashboard', label: 'Panel', icon: LayoutDashboard },
+  { href: '/projects', label: 'Obras', icon: FileText },
+  { href: '/quotes', label: 'Presupuestos', icon: FileText },
+  { href: '/products', label: 'Productos', icon: Package },
+  { href: '/clients', label: 'Clientes', icon: Users },
+  { href: '/settings', label: 'Configuración', icon: Settings },
 ]
 
-interface AppSidebarProps {
-  activeView: ActiveView
-  onViewChange: (view: ActiveView) => void
-}
+export function AppSidebar() {
+  const pathname = usePathname()
 
-export function AppSidebar({ activeView, onViewChange }: AppSidebarProps) {
   return (
     <Sidebar>
       <SidebarHeader className="border-b border-sidebar-border">
@@ -60,14 +57,16 @@ export function AppSidebar({ activeView, onViewChange }: AppSidebarProps) {
           <SidebarGroupContent>
             <SidebarMenu>
               {navItems.map((item) => (
-                <SidebarMenuItem key={item.id}>
+                <SidebarMenuItem key={item.href}>
                   <SidebarMenuButton
-                    isActive={activeView === item.id}
-                    onClick={() => onViewChange(item.id)}
+                    asChild
+                    isActive={pathname === item.href || (pathname === '/' && item.href === '/dashboard')}
                     tooltip={item.label}
                   >
-                    <item.icon className="h-4 w-4" />
-                    <span>{item.label}</span>
+                    <Link href={item.href}>
+                      <item.icon className="h-4 w-4" />
+                      <span>{item.label}</span>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
