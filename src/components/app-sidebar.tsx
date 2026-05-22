@@ -1,5 +1,7 @@
 'use client'
 
+import { signOut } from 'next-auth/react'
+
 import {
   LayoutDashboard,
   FileText,
@@ -7,6 +9,7 @@ import {
   Users,
   Settings,
   Factory,
+  LogOut,
 } from 'lucide-react'
 import {
   Sidebar,
@@ -72,8 +75,20 @@ export function AppSidebar({ activeView, onViewChange }: AppSidebarProps) {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="border-t border-sidebar-border">
-        <div className="px-2 py-1">
+      <SidebarFooter className="border-t border-sidebar-border p-2">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              onClick={() => signOut({ callbackUrl: '/login' })}
+              tooltip="Cerrar Sesión"
+              className="text-destructive hover:bg-destructive/10 hover:text-destructive"
+            >
+              <LogOut className="h-4 w-4" />
+              <span>Cerrar Sesión</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+        <div className="px-2 py-2 mt-2">
           <p className="text-[10px] text-sidebar-foreground/50">
             © 2025 ALUMVI · Gestión Interna
           </p>
