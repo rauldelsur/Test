@@ -381,23 +381,10 @@ export function QuoteForm({
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex gap-2">
-                <Select value={productCategoryFilter} onValueChange={setProductCategoryFilter}>
-                  <SelectTrigger className="w-44 bg-white">
-                    <SelectValue placeholder="Categoría" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">Todas las categorías</SelectItem>
-                    {categories.map((cat) => (
-                      <SelectItem key={cat.id} value={cat.id}>
-                        {cat.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
                   <Input
-                    placeholder="Escribe para buscar un producto..."
+                    placeholder="Escribe para buscar un producto (autocompletado)..."
                     value={productSearch}
                     onChange={(e) => {
                       setProductSearch(e.target.value)
@@ -413,7 +400,8 @@ export function QuoteForm({
                         <div
                           key={product.id}
                           className="px-3 py-2 cursor-pointer hover:bg-zinc-50 flex flex-col gap-1 border-b border-zinc-50 last:border-0"
-                          onClick={() => {
+                          onMouseDown={(e) => {
+                            e.preventDefault() // Previene que el input pierda el foco antes del click
                             setSelectedProductId(product.id)
                             setProductSearch(product.name)
                             setIsSearchFocused(false)
@@ -422,7 +410,7 @@ export function QuoteForm({
                           <span className="text-sm font-medium text-zinc-900">{product.name}</span>
                           <div className="flex items-center gap-2">
                             <Badge variant="secondary" className="text-[10px] px-1 py-0 shadow-none bg-zinc-100 text-zinc-600 font-normal">
-                              {product.category.name}
+                              Categoría: {product.category.name}
                             </Badge>
                             <span className="text-[12px] text-zinc-500 tabular-nums">
                               {product.price.toFixed(2)}€/{product.unit}
@@ -433,6 +421,44 @@ export function QuoteForm({
                     </div>
                   )}
                 </div>
+                <Select value={productCategoryFilter} onValueChange={setProductCategoryFilter}>
+                  <SelectTrigger className="w-44 bg-white">
+                    <SelectValue placeholder="Categoría" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Todas las categorías</SelectItem>
+                    {categories.map((cat) => (
+                      <SelectItem key={cat.id} value={cat.id}>
+                        {cat.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div className="flex gap-2">
+                <Select value={selectedProductId} onValueChange={(val) => {
+                  setSelectedProductId(val)
+                  const p = products.find(prod => prod.id === val)
+                  if (p) setProductSearch(p.name)
+                }}>
+                  <SelectTrigger className="flex-1 bg-white">
+                    <SelectValue placeholder="Seleccionar producto del catálogo" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {products.map((product) => (
+                      <SelectItem key={product.id} value={product.id}>
+                        <span className="flex items-center gap-2">
+                          <Badge variant="secondary" className="text-[10px] px-1 py-0">
+                            {product.category.name}
+                          </Badge>
+                          {product.name} — {product.price.toFixed(2)}€/{product.unit}
+                        </span>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                
                 <Input
                   type="number"
                   value={addQuantity}
