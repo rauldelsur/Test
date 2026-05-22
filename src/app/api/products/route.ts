@@ -9,13 +9,17 @@ export async function GET(request: Request) {
 
     const where: Record<string, unknown> = {}
     if (categoryId) where.categoryId = categoryId
-    if (search) where.name = { contains: search }
 
-    const products = await db.product.findMany({
+    let products = await db.product.findMany({
       where,
       include: { category: true },
       orderBy: [{ category: { name: 'asc' } }, { name: 'asc' }],
     })
+
+    if (search) {
+      const lowerSearch = search.toLowerCase()
+      products = products.filter(p => p.name.toLowerCase().includes(lowerSearch))
+    }
 
     return NextResponse.json(products)
   } catch (error) {

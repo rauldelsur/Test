@@ -125,45 +125,59 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
 
       {/* Bento Box Stats */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {/* Highlight Card */}
-        <Card className="md:col-span-2 bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900 ring-0 p-8 flex flex-col justify-between overflow-hidden relative border-none">
-          <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
-            <TrendingUp className="w-32 h-32" />
-          </div>
-          <div className="relative z-10">
-            <p className="text-zinc-400 dark:text-zinc-500 text-[13px] font-medium mb-2">Tasa de Aprobación</p>
-            <div className="flex items-baseline gap-2">
-              <span className="text-5xl font-medium tracking-tight">
-                {data.totalQuotes > 0
-                  ? Math.round(((data.quotesByStatus?.aprobado || 0) / data.totalQuotes) * 100)
-                  : 0}%
-              </span>
-            </div>
-            <p className="text-zinc-400 dark:text-zinc-500 text-[13px] mt-2">
-              De un total de {data.totalQuotes} presupuestos emitidos.
-            </p>
-          </div>
-        </Card>
-
-        <Card className="p-6 flex flex-col justify-between">
+        <Card 
+          className="p-6 flex flex-col justify-between cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
+          onClick={() => onNavigate('projects')}
+        >
           <div className="flex items-center gap-3 text-zinc-500 mb-4">
             <Briefcase className="h-4 w-4" />
             <h3 className="text-[13px] font-medium">Obras Activas</h3>
           </div>
           <div>
             <div className="text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-50">{data.totalProjects}</div>
-            <p className="text-[13px] text-zinc-500 mt-1">proyectos registrados</p>
+            <p className="text-[13px] text-zinc-500 mt-1">Ver proyectos</p>
           </div>
         </Card>
 
-        <Card className="p-6 flex flex-col justify-between">
+        <Card 
+          className="p-6 flex flex-col justify-between cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
+          onClick={() => onNavigate('clients')}
+        >
           <div className="flex items-center gap-3 text-zinc-500 mb-4">
             <Users className="h-4 w-4" />
             <h3 className="text-[13px] font-medium">Cartera de Clientes</h3>
           </div>
           <div>
             <div className="text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-50">{data.totalClients}</div>
-            <p className="text-[13px] text-zinc-500 mt-1">en base de datos</p>
+            <p className="text-[13px] text-zinc-500 mt-1">Ver clientes</p>
+          </div>
+        </Card>
+
+        <Card 
+          className="p-6 flex flex-col justify-between cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
+          onClick={() => onNavigate('quotes')}
+        >
+          <div className="flex items-center gap-3 text-zinc-500 mb-4">
+            <FileText className="h-4 w-4" />
+            <h3 className="text-[13px] font-medium">Presupuestos</h3>
+          </div>
+          <div>
+            <div className="text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-50">{data.totalQuotes}</div>
+            <p className="text-[13px] text-zinc-500 mt-1">Ver presupuestos</p>
+          </div>
+        </Card>
+
+        <Card 
+          className="p-6 flex flex-col justify-between cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
+          onClick={() => onNavigate('products')}
+        >
+          <div className="flex items-center gap-3 text-zinc-500 mb-4">
+            <Package className="h-4 w-4" />
+            <h3 className="text-[13px] font-medium">Catálogo</h3>
+          </div>
+          <div>
+            <div className="text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-50">{data.totalProducts}</div>
+            <p className="text-[13px] text-zinc-500 mt-1">Ver productos</p>
           </div>
         </Card>
       </div>
