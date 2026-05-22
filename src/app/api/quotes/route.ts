@@ -6,10 +6,12 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url)
     const status = searchParams.get('status')
     const clientId = searchParams.get('clientId')
+    const projectId = searchParams.get('projectId')
 
     const where: Record<string, unknown> = {}
     if (status) where.status = status
     if (clientId) where.clientId = clientId
+    if (projectId) where.projectId = projectId
 
     const quotes = await db.quote.findMany({
       where,
@@ -43,6 +45,7 @@ export async function POST(request: Request) {
       validityDays,
       notes,
       items,
+      projectId,
     } = body
 
     if (!items || items.length === 0) {
@@ -64,6 +67,7 @@ export async function POST(request: Request) {
     const quote = await db.quote.create({
       data: {
         number: quoteNumber,
+        projectId: projectId || null,
         clientId: clientId || null,
         clientName: clientName || 'Cliente General',
         status: status || 'borrador',

@@ -21,10 +21,11 @@ import {
   SidebarFooter,
 } from '@/components/ui/sidebar'
 
-export type ActiveView = 'dashboard' | 'quotes' | 'products' | 'clients' | 'settings'
+export type ActiveView = 'dashboard' | 'projects' | 'quotes' | 'products' | 'clients' | 'settings'
 
 const navItems = [
   { id: 'dashboard' as ActiveView, label: 'Panel', icon: LayoutDashboard },
+  { id: 'projects' as ActiveView, label: 'Obras', icon: FileText },
   { id: 'quotes' as ActiveView, label: 'Presupuestos', icon: FileText },
   { id: 'products' as ActiveView, label: 'Productos', icon: Package },
   { id: 'clients' as ActiveView, label: 'Clientes', icon: Users },

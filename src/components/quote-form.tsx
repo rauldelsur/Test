@@ -73,6 +73,7 @@ interface QuoteFormProps {
     }>
   } | null
   onSave: (data: {
+    projectId?: string | null
     clientId: string | null
     clientName: string
     lacado: number
@@ -84,6 +85,7 @@ interface QuoteFormProps {
   onCancel: () => void
   defaultMargin: number
   defaultValidity: number
+  prefillProjectId?: string
 }
 
 export function QuoteForm({
@@ -94,6 +96,7 @@ export function QuoteForm({
   onCancel,
   defaultMargin,
   defaultValidity,
+  prefillProjectId,
 }: QuoteFormProps) {
   const { toast } = useToast()
   const [products, setProducts] = useState<Product[]>([])
@@ -233,6 +236,7 @@ export function QuoteForm({
     }
 
     onSave({
+      projectId: prefillProjectId,
       clientId: clientId === 'none' ? null : clientId,
       clientName,
       lacado: parseFloat(lacado) || 0,

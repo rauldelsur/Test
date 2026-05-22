@@ -5,6 +5,7 @@ import { SidebarProvider, SidebarInset, SidebarTrigger } from '@/components/ui/s
 import { AppSidebar, type ActiveView } from '@/components/app-sidebar'
 import { DashboardView } from '@/components/dashboard-view'
 import { QuotesView } from '@/components/quotes-view'
+import { ProjectsView } from '@/components/projects-view'
 import { ProductsView } from '@/components/products-view'
 import { ClientsView } from '@/components/clients-view'
 import { SettingsView } from '@/components/settings-view'
@@ -17,6 +18,8 @@ export default function Home() {
     switch (activeView) {
       case 'dashboard':
         return <DashboardView onNavigate={setActiveView} />
+      case 'projects':
+        return <ProjectsView onNavigate={setActiveView} />
       case 'quotes':
         return <QuotesView />
       case 'products':
@@ -39,6 +42,7 @@ export default function Home() {
           <Separator orientation="vertical" className="h-4" />
           <span className="text-sm text-muted-foreground">
             {activeView === 'dashboard' && 'Panel'}
+            {activeView === 'projects' && 'Obras'}
             {activeView === 'quotes' && 'Presupuestos'}
             {activeView === 'products' && 'Productos'}
             {activeView === 'clients' && 'Clientes'}

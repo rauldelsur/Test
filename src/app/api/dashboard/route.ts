@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server'
 export async function GET() {
   try {
     const [
+      totalProjects,
       totalQuotes,
       totalProducts,
       totalClients,
@@ -11,6 +12,7 @@ export async function GET() {
       quotesByStatus,
       settings,
     ] = await Promise.all([
+      db.project.count(),
       db.quote.count(),
       db.product.count(),
       db.client.count(),
@@ -48,6 +50,7 @@ export async function GET() {
     })
 
     return NextResponse.json({
+      totalProjects,
       totalQuotes,
       totalProducts,
       totalClients,

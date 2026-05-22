@@ -1,0 +1,50 @@
+import { db } from '@/lib/db'
+import { NextResponse } from 'next/server'
+
+export async function GET() {
+  try {
+    const projects = await db.project.findMany({
+      include: {
+        client: true,
+        quotes: {
+          include: {
+            items: true,
+          },
+        },
+      },
+      orderBy: { createdAt: 'desc' },
+    })
+
+    return NextResponse.json(projects)
+  } catch (error) {
+    console.error('Error fetching projects:', error)
+    return NextResponse.json({ error: 'Error al obtener obras' }, { status: 500 })
+  }
+}
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json()
+    const { name, description, clientId } = body
+
+    if (!name) {
+      return NextResponse.json({ error: 'El nombre de la obra es obligatorio' }, { status: 400 })
+    }
+
+    const project = await db.project.create({
+      data: {
+        name,
+        description: description || null,
+        clientId: clientId || null,
+      },
+      include: {
+        client: true,
+      },
+    })
+
+    return NextResponse.json(project, { status: 201 })
+  } catch (error) {
+    console.error('Error creating project:', error)
+    return NextResponse.json({ error: 'Error al crear la obra' }, { status: 500 })
+  }
+}

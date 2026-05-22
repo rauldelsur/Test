@@ -47,6 +47,7 @@ export async function PUT(
       validityDays,
       notes,
       items,
+      projectId,
     } = body
 
     // If items are provided, delete old and create new
@@ -56,6 +57,7 @@ export async function PUT(
 
     const updateData: Record<string, unknown> = {}
     if (clientId !== undefined) updateData.clientId = clientId || null
+    if (projectId !== undefined) updateData.projectId = projectId || null
     if (clientName !== undefined) updateData.clientName = clientName
     if (status !== undefined) updateData.status = status
     if (lacado !== undefined) updateData.lacado = parseFloat(String(lacado))
