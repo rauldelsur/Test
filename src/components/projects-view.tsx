@@ -63,15 +63,12 @@ interface Client {
   name: string
 }
 
-interface ProjectsViewProps {
-  onNavigate: (view: ActiveView) => void
-}
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 
-export function ProjectsView({ onNavigate }: ProjectsViewProps) {
+export function ProjectsView() {
   const { toast } = useToast()
-  const [projects, setProjects] = useState<Project[]>([])
-  const [clients, setClients] = useState<Client[]>([])
-  const [loading, setLoading] = useState(true)
+  const queryClient = useQueryClient()
+  
   const [search, setSearch] = useState('')
 
   const [viewMode, setViewMode] = useState<'list' | 'detail'>('list')
@@ -89,32 +86,23 @@ export function ProjectsView({ onNavigate }: ProjectsViewProps) {
   const [deleteId, setDeleteId] = useState('')
   const [deleteName, setDeleteName] = useState('')
 
-  const fetchProjects = useCallback(async () => {
-    try {
+  const { data: projects = [], isLoading: loadingProjects } = useQuery({
+    queryKey: ['projects'],
+    queryFn: async () => {
       const res = await fetch('/api/projects')
-      const json = await res.json()
-      setProjects(json)
-    } catch (error) {
-      console.error('Error fetching projects:', error)
-    } finally {
-      setLoading(false)
+      return res.json() as Promise<Project[]>
     }
-  }, [])
+  })
 
-  const fetchClients = useCallback(async () => {
-    try {
+  const { data: clients = [], isLoading: loadingClients } = useQuery({
+    queryKey: ['clients'],
+    queryFn: async () => {
       const res = await fetch('/api/clients')
-      const json = await res.json()
-      setClients(json)
-    } catch (error) {
-      console.error('Error fetching clients:', error)
+      return res.json() as Promise<Client[]>
     }
-  }, [])
+  })
 
-  useEffect(() => {
-    fetchProjects()
-    fetchClients()
-  }, [fetchProjects, fetchClients])
+  const loading = loadingProjects || loadingClients
 
   const handleSave = async () => {
     if (!formName) {
@@ -148,7 +136,7 @@ export function ProjectsView({ onNavigate }: ProjectsViewProps) {
       }
       setDialogOpen(false)
       resetForm()
-      fetchProjects()
+      queryClient.invalidateQueries({ queryKey: ['projects'] })
     } catch (error) {
       toast({ title: 'Error', description: String(error), variant: 'destructive' })
     }
@@ -159,7 +147,7 @@ export function ProjectsView({ onNavigate }: ProjectsViewProps) {
       const res = await fetch(`/api/projects/${deleteId}`, { method: 'DELETE' })
       if (!res.ok) throw new Error((await res.json()).error)
       toast({ title: 'Obra eliminada' })
-      fetchProjects()
+      queryClient.invalidateQueries({ queryKey: ['projects'] })
     } catch (error) {
       toast({ title: 'Error', description: String(error), variant: 'destructive' })
     }
@@ -198,7 +186,7 @@ export function ProjectsView({ onNavigate }: ProjectsViewProps) {
     return (
       <ProjectDetail
         projectId={selectedProject.id}
-        onBack={() => { setViewMode('list'); setSelectedProject(null); fetchProjects() }}
+        onBack={() => { setViewMode('list'); setSelectedProject(null); queryClient.invalidateQueries({ queryKey: ['projects'] }) }}
       />
     )
   }

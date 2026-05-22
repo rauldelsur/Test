@@ -63,11 +63,12 @@ interface Product {
   createdAt: string
 }
 
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+
 export function ProductsView() {
   const { toast } = useToast()
-  const [products, setProducts] = useState<Product[]>([])
-  const [categories, setCategories] = useState<Category[]>([])
-  const [loading, setLoading] = useState(true)
+  const queryClient = useQueryClient()
+  
   const [search, setSearch] = useState('')
   const [filterCategory, setFilterCategory] = useState('all')
 
@@ -90,32 +91,26 @@ export function ProductsView() {
   const [deleteId, setDeleteId] = useState('')
   const [deleteName, setDeleteName] = useState('')
 
-  const fetchProducts = useCallback(async () => {
-    try {
+  const { data: products = [], isLoading: loadingProducts } = useQuery({
+    queryKey: ['products', filterCategory, search],
+    queryFn: async () => {
       const params = new URLSearchParams()
       if (filterCategory !== 'all') params.set('categoryId', filterCategory)
       if (search) params.set('search', search)
       const res = await fetch(`/api/products?${params.toString()}`)
-      const json = await res.json()
-      setProducts(json)
-    } catch (error) {
-      console.error('Error fetching products:', error)
+      return res.json() as Promise<Product[]>
     }
-  }, [filterCategory, search])
+  })
 
-  const fetchCategories = useCallback(async () => {
-    try {
+  const { data: categories = [], isLoading: loadingCategories } = useQuery({
+    queryKey: ['categories'],
+    queryFn: async () => {
       const res = await fetch('/api/categories')
-      const json = await res.json()
-      setCategories(json)
-    } catch (error) {
-      console.error('Error fetching categories:', error)
+      return res.json() as Promise<Category[]>
     }
-  }, [])
+  })
 
-  useEffect(() => {
-    Promise.all([fetchProducts(), fetchCategories()]).finally(() => setLoading(false))
-  }, [fetchProducts, fetchCategories])
+  const loading = loadingProducts || loadingCategories
 
   const handleSaveProduct = async () => {
     if (!productName || !productPrice || !productCategoryId) {
@@ -159,8 +154,8 @@ export function ProductsView() {
       }
       setProductDialogOpen(false)
       resetProductForm()
-      fetchProducts()
-      fetchCategories()
+      queryClient.invalidateQueries({ queryKey: ['products'] })
+      queryClient.invalidateQueries({ queryKey: ['categories'] })
     } catch (error) {
       toast({ title: 'Error', description: String(error), variant: 'destructive' })
     }
@@ -198,7 +193,7 @@ export function ProductsView() {
       }
       setCategoryDialogOpen(false)
       resetCategoryForm()
-      fetchCategories()
+      queryClient.invalidateQueries({ queryKey: ['categories'] })
     } catch (error) {
       toast({ title: 'Error', description: String(error), variant: 'destructive' })
     }
@@ -213,7 +208,7 @@ export function ProductsView() {
           throw new Error(err.error)
         }
         toast({ title: 'Producto eliminado' })
-        fetchProducts()
+        queryClient.invalidateQueries({ queryKey: ['products'] })
       } else {
         const res = await fetch(`/api/categories/${deleteId}`, { method: 'DELETE' })
         if (!res.ok) {
@@ -221,7 +216,7 @@ export function ProductsView() {
           throw new Error(err.error)
         }
         toast({ title: 'Categoría eliminada' })
-        fetchCategories()
+        queryClient.invalidateQueries({ queryKey: ['categories'] })
       }
     } catch (error) {
       toast({ title: 'Error', description: String(error), variant: 'destructive' })

@@ -20,10 +20,12 @@ interface CompanySettings {
   nextQuoteNumber: number
 }
 
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+
 export function SettingsView() {
   const { toast } = useToast()
-  const [settings, setSettings] = useState<CompanySettings | null>(null)
-  const [loading, setLoading] = useState(true)
+  const queryClient = useQueryClient()
+  
   const [saving, setSaving] = useState(false)
 
   const [companyName, setCompanyName] = useState('')
@@ -35,11 +37,12 @@ export function SettingsView() {
   const [defaultValidity, setDefaultValidity] = useState('15')
   const [nextQuoteNumber, setNextQuoteNumber] = useState('1001')
 
-  const fetchSettings = useCallback(async () => {
-    try {
+  const { data: settings = null, isLoading: loading } = useQuery({
+    queryKey: ['settings'],
+    queryFn: async () => {
       const res = await fetch('/api/settings')
-      const json = await res.json()
-      setSettings(json)
+      const json = await res.json() as CompanySettings
+      
       setCompanyName(json.companyName)
       setTagline(json.tagline)
       setPhone(json.phone || '')
@@ -48,16 +51,11 @@ export function SettingsView() {
       setDefaultMargin(String(json.defaultMargin))
       setDefaultValidity(String(json.defaultValidity))
       setNextQuoteNumber(String(json.nextQuoteNumber))
-    } catch (error) {
-      console.error('Error fetching settings:', error)
-    } finally {
-      setLoading(false)
-    }
-  }, [])
-
-  useEffect(() => {
-    fetchSettings()
-  }, [fetchSettings])
+      
+      return json
+    },
+    staleTime: 0, // ensure it updates states when navigated back
+  })
 
   const handleSave = async () => {
     setSaving(true)
@@ -80,8 +78,7 @@ export function SettingsView() {
         const err = await res.json()
         throw new Error(err.error)
       }
-      const json = await res.json()
-      setSettings(json)
+      queryClient.invalidateQueries({ queryKey: ['settings'] })
       toast({ title: 'Configuración guardada' })
     } catch (error) {
       toast({ title: 'Error', description: String(error), variant: 'destructive' })

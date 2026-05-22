@@ -44,10 +44,12 @@ interface Client {
   createdAt: string
 }
 
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+
 export function ClientsView() {
   const { toast } = useToast()
-  const [clients, setClients] = useState<Client[]>([])
-  const [loading, setLoading] = useState(true)
+  const queryClient = useQueryClient()
+  
   const [search, setSearch] = useState('')
 
   // Dialog
@@ -68,21 +70,13 @@ export function ClientsView() {
   const [quotesDialogOpen, setQuotesDialogOpen] = useState(false)
   const [selectedClientQuotes, setSelectedClientQuotes] = useState<Array<{ id: string; number: number; status: string; clientName: string }>>([])
 
-  const fetchClients = useCallback(async () => {
-    try {
+  const { data: clients = [], isLoading: loading } = useQuery({
+    queryKey: ['clients'],
+    queryFn: async () => {
       const res = await fetch('/api/clients')
-      const json = await res.json()
-      setClients(json)
-    } catch (error) {
-      console.error('Error fetching clients:', error)
-    } finally {
-      setLoading(false)
+      return res.json() as Promise<Client[]>
     }
-  }, [])
-
-  useEffect(() => {
-    fetchClients()
-  }, [fetchClients])
+  })
 
   const handleSave = async () => {
     if (!formName) {
@@ -128,7 +122,7 @@ export function ClientsView() {
       }
       setDialogOpen(false)
       resetForm()
-      fetchClients()
+      queryClient.invalidateQueries({ queryKey: ['clients'] })
     } catch (error) {
       toast({ title: 'Error', description: String(error), variant: 'destructive' })
     }
@@ -142,7 +136,7 @@ export function ClientsView() {
         throw new Error(err.error)
       }
       toast({ title: 'Cliente eliminado' })
-      fetchClients()
+      queryClient.invalidateQueries({ queryKey: ['clients'] })
     } catch (error) {
       toast({ title: 'Error', description: String(error), variant: 'destructive' })
     }

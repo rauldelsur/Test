@@ -98,13 +98,12 @@ const statusVariants: Record<string, 'default' | 'secondary' | 'destructive' | '
 
 type ViewMode = 'list' | 'create' | 'edit' | 'detail'
 
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+
 export function QuotesView() {
   const { toast } = useToast()
-  const [quotes, setQuotes] = useState<Quote[]>([])
-  const [categories, setCategories] = useState<Category[]>([])
-  const [clients, setClients] = useState<Client[]>([])
-  const [settings, setSettings] = useState<CompanySettings | null>(null)
-  const [loading, setLoading] = useState(true)
+  const queryClient = useQueryClient()
+  
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
 
@@ -122,53 +121,41 @@ export function QuotesView() {
   const [statusQuoteId, setStatusQuoteId] = useState('')
   const [newStatus, setNewStatus] = useState('')
 
-  const fetchQuotes = useCallback(async () => {
-    try {
+  const { data: quotes = [], isLoading: loadingQuotes } = useQuery({
+    queryKey: ['quotes', statusFilter],
+    queryFn: async () => {
       const params = new URLSearchParams()
       if (statusFilter !== 'all') params.set('status', statusFilter)
       const res = await fetch(`/api/quotes?${params.toString()}`)
-      const json = await res.json()
-      setQuotes(json)
-    } catch (error) {
-      console.error('Error fetching quotes:', error)
+      return res.json() as Promise<Quote[]>
     }
-  }, [statusFilter])
+  })
 
-  const fetchCategories = useCallback(async () => {
-    try {
+  const { data: categories = [] } = useQuery({
+    queryKey: ['categories'],
+    queryFn: async () => {
       const res = await fetch('/api/categories')
-      const json = await res.json()
-      setCategories(json)
-    } catch (error) {
-      console.error('Error fetching categories:', error)
+      return res.json() as Promise<Category[]>
     }
-  }, [])
+  })
 
-  const fetchClients = useCallback(async () => {
-    try {
+  const { data: clients = [] } = useQuery({
+    queryKey: ['clients'],
+    queryFn: async () => {
       const res = await fetch('/api/clients')
-      const json = await res.json()
-      setClients(json)
-    } catch (error) {
-      console.error('Error fetching clients:', error)
+      return res.json() as Promise<Client[]>
     }
-  }, [])
+  })
 
-  const fetchSettings = useCallback(async () => {
-    try {
+  const { data: settings = null } = useQuery({
+    queryKey: ['settings'],
+    queryFn: async () => {
       const res = await fetch('/api/settings')
-      const json = await res.json()
-      setSettings(json)
-    } catch (error) {
-      console.error('Error fetching settings:', error)
+      return res.json() as Promise<CompanySettings>
     }
-  }, [])
+  })
 
-  useEffect(() => {
-    Promise.all([fetchQuotes(), fetchCategories(), fetchClients(), fetchSettings()]).finally(
-      () => setLoading(false)
-    )
-  }, [fetchQuotes, fetchCategories, fetchClients, fetchSettings])
+  const loading = loadingQuotes
 
   const calculateQuoteTotal = (quote: Quote) => {
     const subtotal = quote.items.reduce((sum, item) => sum + item.subtotal, 0)
@@ -199,7 +186,7 @@ export function QuotesView() {
       toast({ title: 'Presupuesto creado', description: `Presupuesto #${quote.number} creado correctamente` })
       setViewMode('list')
       setSelectedQuote(quote)
-      fetchQuotes()
+      queryClient.invalidateQueries({ queryKey: ['quotes'] })
     } catch (error) {
       toast({ title: 'Error', description: String(error), variant: 'destructive' })
     }
@@ -229,7 +216,7 @@ export function QuotesView() {
       toast({ title: 'Presupuesto actualizado' })
       setViewMode('list')
       setEditingQuote(null)
-      fetchQuotes()
+      queryClient.invalidateQueries({ queryKey: ['quotes'] })
     } catch (error) {
       toast({ title: 'Error', description: String(error), variant: 'destructive' })
     }
@@ -243,7 +230,7 @@ export function QuotesView() {
         throw new Error(err.error)
       }
       toast({ title: 'Presupuesto eliminado' })
-      fetchQuotes()
+      queryClient.invalidateQueries({ queryKey: ['quotes'] })
     } catch (error) {
       toast({ title: 'Error', description: String(error), variant: 'destructive' })
     }
@@ -262,7 +249,7 @@ export function QuotesView() {
         throw new Error(err.error)
       }
       toast({ title: 'Estado actualizado' })
-      fetchQuotes()
+      queryClient.invalidateQueries({ queryKey: ['quotes'] })
     } catch (error) {
       toast({ title: 'Error', description: String(error), variant: 'destructive' })
     }

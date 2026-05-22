@@ -1,18 +1,16 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { useRouter } from 'next/navigation'
 import {
   FileText,
   Package,
   Users,
   Plus,
-  TrendingUp,
   Briefcase
 } from 'lucide-react'
-import type { ActiveView } from './app-sidebar'
 
 interface DashboardData {
   totalProjects: number
@@ -27,7 +25,7 @@ interface DashboardData {
     margin: number
     lacado: number
     calculatedTotal: number
-    createdAt: string
+    createdAt: Date
     client: { name: string } | null
   }>
   quotesByStatus: Record<string, number>
@@ -51,52 +49,10 @@ const statusVariants: Record<string, 'default' | 'secondary' | 'destructive' | '
   rechazado: 'destructive',
 }
 
-interface DashboardViewProps {
-  onNavigate: (view: ActiveView) => void
-}
-
-export function DashboardView({ onNavigate }: DashboardViewProps) {
-  const [data, setData] = useState<DashboardData | null>(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    fetchDashboard()
-  }, [])
-
-  const fetchDashboard = async () => {
-    try {
-      const res = await fetch('/api/dashboard')
-      const json = await res.json()
-      setData(json)
-    } catch (error) {
-      console.error('Error fetching dashboard:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="flex flex-col items-center gap-4 text-zinc-400">
-          <div className="h-6 w-6 animate-spin rounded-full border-2 border-zinc-900 border-t-transparent dark:border-zinc-50 dark:border-t-transparent" />
-          <p className="text-[13px] tracking-tight">Cargando métricas...</p>
-        </div>
-      </div>
-    )
-  }
-
+export function DashboardClient({ initialData: data }: { initialData: DashboardData }) {
+  const router = useRouter()
+  
   if (!data) return null
-  if ('error' in data) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-center p-8 bg-red-50 text-red-600 rounded-2xl border border-red-100 max-w-sm">
-          <p className="font-medium mb-1">Error de conexión</p>
-          <p className="text-[13px] opacity-80">{(data as any).error || 'No se pudieron cargar los datos.'}</p>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="space-y-8 max-w-6xl mx-auto pb-10">
@@ -112,11 +68,11 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
         </div>
         
         <div className="flex items-center gap-3">
-          <Button variant="outline" size="sm" onClick={() => onNavigate('quotes')} className="h-9 px-4 text-[13px] hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors">
+          <Button variant="outline" size="sm" onClick={() => router.push('/quotes')} className="h-9 px-4 text-[13px] hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors">
             <FileText className="mr-2 h-3.5 w-3.5" />
             Presupuesto
           </Button>
-          <Button size="sm" onClick={() => onNavigate('projects')} className="h-9 px-4 text-[13px] bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 transition-colors shadow-sm">
+          <Button size="sm" onClick={() => router.push('/projects')} className="h-9 px-4 text-[13px] bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 transition-colors shadow-sm">
             <Plus className="mr-2 h-3.5 w-3.5" />
             Nueva Obra
           </Button>
@@ -127,7 +83,7 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card 
           className="p-6 flex flex-col justify-between cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
-          onClick={() => onNavigate('projects')}
+          onClick={() => router.push('/projects')}
         >
           <div className="flex items-center gap-3 text-zinc-500 mb-4">
             <Briefcase className="h-4 w-4" />
@@ -141,7 +97,7 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
 
         <Card 
           className="p-6 flex flex-col justify-between cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
-          onClick={() => onNavigate('clients')}
+          onClick={() => router.push('/clients')}
         >
           <div className="flex items-center gap-3 text-zinc-500 mb-4">
             <Users className="h-4 w-4" />
@@ -155,7 +111,7 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
 
         <Card 
           className="p-6 flex flex-col justify-between cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
-          onClick={() => onNavigate('quotes')}
+          onClick={() => router.push('/quotes')}
         >
           <div className="flex items-center gap-3 text-zinc-500 mb-4">
             <FileText className="h-4 w-4" />
@@ -169,7 +125,7 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
 
         <Card 
           className="p-6 flex flex-col justify-between cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
-          onClick={() => onNavigate('products')}
+          onClick={() => router.push('/products')}
         >
           <div className="flex items-center gap-3 text-zinc-500 mb-4">
             <Package className="h-4 w-4" />
@@ -191,7 +147,7 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
                 <CardTitle>Presupuestos Recientes</CardTitle>
                 <CardDescription>Los últimos movimientos comerciales.</CardDescription>
               </div>
-              <Button variant="ghost" size="sm" onClick={() => onNavigate('quotes')} className="text-zinc-500 text-[13px]">
+              <Button variant="ghost" size="sm" onClick={() => router.push('/quotes')} className="text-zinc-500 text-[13px]">
                 Ver todos
               </Button>
             </div>
@@ -206,7 +162,7 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
                 <p className="text-[13px] text-zinc-500 max-w-[250px] mb-4">
                   Aún no has generado ningún presupuesto en el sistema.
                 </p>
-                <Button onClick={() => onNavigate('quotes')} size="sm" className="bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900 h-8 text-[13px]">
+                <Button onClick={() => router.push('/quotes')} size="sm" className="bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900 h-8 text-[13px]">
                   <Plus className="mr-2 h-3.5 w-3.5" />
                   Crear el primero
                 </Button>
@@ -217,7 +173,7 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
                   <div
                     key={quote.id}
                     className="group flex items-center justify-between p-3 px-4 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-all duration-200 cursor-pointer"
-                    onClick={() => onNavigate('quotes')}
+                    onClick={() => router.push(`/quotes`)}
                   >
                     <div className="flex items-center gap-4">
                       <div className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-100 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900 group-hover:shadow-md transition-shadow">
