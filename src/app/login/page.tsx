@@ -73,7 +73,7 @@ function LoginForm() {
             <Input
               id="email"
               type="email"
-              placeholder="alumvi@hotmail.com"
+              placeholder="tu@correo.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
