@@ -1,0 +1,981 @@
+{
+  "categories": [
+    {
+      "id": "cmp4031520000ghg7w6dov7uj",
+      "name": "Inoxidable",
+      "createdAt": "2026-05-13T11:52:54.662Z",
+      "updatedAt": "2026-05-13T11:52:54.662Z"
+    },
+    {
+      "id": "cmp4031560001ghg7rkbua1gw",
+      "name": "Hierro",
+      "createdAt": "2026-05-13T11:52:54.666Z",
+      "updatedAt": "2026-05-13T11:52:54.666Z"
+    },
+    {
+      "id": "cmp4031570002ghg7unosc2ls",
+      "name": "Inoxidable 316",
+      "createdAt": "2026-05-13T11:52:54.667Z",
+      "updatedAt": "2026-05-13T11:52:54.667Z"
+    },
+    {
+      "id": "cmp4031580003ghg7800ye4ft",
+      "name": "Galvanizado",
+      "createdAt": "2026-05-13T11:52:54.668Z",
+      "updatedAt": "2026-05-13T11:52:54.668Z"
+    },
+    {
+      "id": "cmp403khm0000gh2vw550cl4c",
+      "name": "Varios",
+      "createdAt": "2026-05-13T11:53:19.737Z",
+      "updatedAt": "2026-05-13T11:53:19.737Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "seed-1",
+      "name": "TUBO 40 X 40",
+      "price": 7.62,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.669Z",
+      "updatedAt": "2026-05-13T11:52:54.669Z"
+    },
+    {
+      "id": "seed-2",
+      "name": "TUBO 30X 10",
+      "price": 3.6,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.670Z",
+      "updatedAt": "2026-05-13T11:52:54.670Z"
+    },
+    {
+      "id": "seed-3",
+      "name": "TUBO 20 X20",
+      "price": 4.39,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.671Z",
+      "updatedAt": "2026-05-13T11:52:54.671Z"
+    },
+    {
+      "id": "seed-4",
+      "name": "TUBO 40 X 10",
+      "price": 5.34,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.672Z",
+      "updatedAt": "2026-05-13T11:52:54.672Z"
+    },
+    {
+      "id": "seed-5",
+      "name": "TUBO 60X20",
+      "price": 7.98,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.674Z",
+      "updatedAt": "2026-05-13T11:52:54.674Z"
+    },
+    {
+      "id": "seed-6",
+      "name": "TUBO  40 X20",
+      "price": 6.04,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.674Z",
+      "updatedAt": "2026-05-13T11:52:54.674Z"
+    },
+    {
+      "id": "seed-7",
+      "name": "TUBO 50 X 20",
+      "price": 7.07,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.675Z",
+      "updatedAt": "2026-05-13T11:52:54.675Z"
+    },
+    {
+      "id": "seed-8",
+      "name": "TUBO 30 X 15",
+      "price": 3.52,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.679Z",
+      "updatedAt": "2026-05-13T11:52:54.679Z"
+    },
+    {
+      "id": "seed-9",
+      "name": "TUBO 50 X 50",
+      "price": 7.59,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.680Z",
+      "updatedAt": "2026-05-13T11:52:54.680Z"
+    },
+    {
+      "id": "seed-10",
+      "name": "TUBO 30 X 20",
+      "price": 3.92,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.681Z",
+      "updatedAt": "2026-05-13T11:52:54.681Z"
+    },
+    {
+      "id": "seed-11",
+      "name": "TUBO 40X40X 3",
+      "price": 10.28,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.682Z",
+      "updatedAt": "2026-05-13T11:52:54.682Z"
+    },
+    {
+      "id": "seed-12",
+      "name": "TUBO 80X80X4",
+      "price": 10.27,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.688Z",
+      "updatedAt": "2026-05-13T11:52:54.688Z"
+    },
+    {
+      "id": "seed-13",
+      "name": "TUBO 30X30X1,5",
+      "price": 4.47,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.689Z",
+      "updatedAt": "2026-05-13T11:52:54.689Z"
+    },
+    {
+      "id": "seed-14",
+      "name": "TUBO 60X60X1,5",
+      "price": 13.05,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.690Z",
+      "updatedAt": "2026-05-13T11:52:54.690Z"
+    },
+    {
+      "id": "seed-15",
+      "name": "TUBO 60X40",
+      "price": 11.34,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.691Z",
+      "updatedAt": "2026-05-13T11:52:54.691Z"
+    },
+    {
+      "id": "seed-16",
+      "name": "Tablero aglormerado hidrofugo de 244x122x16",
+      "price": 21,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.693Z",
+      "updatedAt": "2026-05-13T11:52:54.693Z"
+    },
+    {
+      "id": "seed-17",
+      "name": "TUBO 100X40",
+      "price": 17.02,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.697Z",
+      "updatedAt": "2026-05-13T11:52:54.697Z"
+    },
+    {
+      "id": "seed-18",
+      "name": "TUBO 100X100X3",
+      "price": 32.73,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.699Z",
+      "updatedAt": "2026-05-13T11:52:54.699Z"
+    },
+    {
+      "id": "seed-19",
+      "name": "Pletina 40 x 8",
+      "price": 8,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.700Z",
+      "updatedAt": "2026-05-13T11:52:54.700Z"
+    },
+    {
+      "id": "seed-20",
+      "name": "Pletina 30 x 6",
+      "price": 4.51,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.702Z",
+      "updatedAt": "2026-05-13T11:52:54.702Z"
+    },
+    {
+      "id": "seed-21",
+      "name": "Pletina 50 x 5",
+      "price": 6.27,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.705Z",
+      "updatedAt": "2026-05-13T11:52:54.705Z"
+    },
+    {
+      "id": "seed-22",
+      "name": "Pletina 40 x 5",
+      "price": 5.01,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.706Z",
+      "updatedAt": "2026-05-13T11:52:54.706Z"
+    },
+    {
+      "id": "seed-23",
+      "name": "Pletina 30 x 5",
+      "price": 3.76,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.707Z",
+      "updatedAt": "2026-05-13T11:52:54.707Z"
+    },
+    {
+      "id": "seed-24",
+      "name": "Pletina 60 x 6",
+      "price": 9.02,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.709Z",
+      "updatedAt": "2026-05-13T11:52:54.709Z"
+    },
+    {
+      "id": "seed-25",
+      "name": "Angulo 30 x 30",
+      "price": 4.31,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.710Z",
+      "updatedAt": "2026-05-13T11:52:54.710Z"
+    },
+    {
+      "id": "seed-26",
+      "name": "Angulo 40 x 40",
+      "price": 5.82,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.711Z",
+      "updatedAt": "2026-05-13T11:52:54.711Z"
+    },
+    {
+      "id": "seed-27",
+      "name": "Macizo de 12",
+      "price": 2.83,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.712Z",
+      "updatedAt": "2026-05-13T11:52:54.712Z"
+    },
+    {
+      "id": "seed-28",
+      "name": "Macizo de 16",
+      "price": 5.04,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.713Z",
+      "updatedAt": "2026-05-13T11:52:54.713Z"
+    },
+    {
+      "id": "seed-29",
+      "name": "Pasamano de 43",
+      "price": 7.5,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.714Z",
+      "updatedAt": "2026-05-13T11:52:54.714Z"
+    },
+    {
+      "id": "seed-30",
+      "name": "Junquillo inox",
+      "price": 2.92,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.715Z",
+      "updatedAt": "2026-05-13T11:52:54.715Z"
+    },
+    {
+      "id": "seed-31",
+      "name": "U inox de 20x20x20",
+      "price": 4.98,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.716Z",
+      "updatedAt": "2026-05-13T11:52:54.716Z"
+    },
+    {
+      "id": "seed-32",
+      "name": "Tubo inox de 43",
+      "price": 7.5,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.717Z",
+      "updatedAt": "2026-05-13T11:52:54.717Z"
+    },
+    {
+      "id": "seed-33",
+      "name": "Tubo inox de 12",
+      "price": 2.5,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.718Z",
+      "updatedAt": "2026-05-13T11:52:54.718Z"
+    },
+    {
+      "id": "seed-34",
+      "name": "Tubo de 20",
+      "price": 4.47,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.719Z",
+      "updatedAt": "2026-05-13T11:52:54.719Z"
+    },
+    {
+      "id": "seed-35",
+      "name": "Tubo de 16",
+      "price": 3.44,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.720Z",
+      "updatedAt": "2026-05-13T11:52:54.720Z"
+    },
+    {
+      "id": "seed-36",
+      "name": "CHAPA INOX 2000X1000X1,5",
+      "price": 90,
+      "unit": "ml",
+      "categoryId": "cmp4031520000ghg7w6dov7uj",
+      "createdAt": "2026-05-13T11:52:54.721Z",
+      "updatedAt": "2026-05-13T11:52:54.721Z"
+    },
+    {
+      "id": "seed-37",
+      "name": "TUBO 40 X 40",
+      "price": 5.51,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.722Z",
+      "updatedAt": "2026-05-13T11:52:54.722Z"
+    },
+    {
+      "id": "seed-38",
+      "name": "TUBO 30X 10",
+      "price": 2.61,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.723Z",
+      "updatedAt": "2026-05-13T11:52:54.723Z"
+    },
+    {
+      "id": "seed-39",
+      "name": "TUBO 20 X20",
+      "price": 2.13,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.724Z",
+      "updatedAt": "2026-05-13T11:52:54.724Z"
+    },
+    {
+      "id": "seed-40",
+      "name": "TUBO 40 X 10",
+      "price": 3.26,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.726Z",
+      "updatedAt": "2026-05-13T11:52:54.726Z"
+    },
+    {
+      "id": "seed-41",
+      "name": "TUBO 60X20",
+      "price": 5.23,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.728Z",
+      "updatedAt": "2026-05-13T11:52:54.728Z"
+    },
+    {
+      "id": "seed-42",
+      "name": "TUBO  40 X20",
+      "price": 3.92,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.733Z",
+      "updatedAt": "2026-05-13T11:52:54.733Z"
+    },
+    {
+      "id": "seed-43",
+      "name": "TUBO 50 X 20",
+      "price": 4.58,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.735Z",
+      "updatedAt": "2026-05-13T11:52:54.735Z"
+    },
+    {
+      "id": "seed-44",
+      "name": "TUBO 30 X 15",
+      "price": 2.94,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.737Z",
+      "updatedAt": "2026-05-13T11:52:54.737Z"
+    },
+    {
+      "id": "seed-45",
+      "name": "TUBO 50 X 50",
+      "price": 6.81,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.738Z",
+      "updatedAt": "2026-05-13T11:52:54.738Z"
+    },
+    {
+      "id": "seed-46",
+      "name": "TUBO 30 X 20",
+      "price": 3.26,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.739Z",
+      "updatedAt": "2026-05-13T11:52:54.739Z"
+    },
+    {
+      "id": "seed-47",
+      "name": "TUBO 100X40",
+      "price": 9.42,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.740Z",
+      "updatedAt": "2026-05-13T11:52:54.740Z"
+    },
+    {
+      "id": "seed-48",
+      "name": "TUBO 80X40",
+      "price": 8.11,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.741Z",
+      "updatedAt": "2026-05-13T11:52:54.741Z"
+    },
+    {
+      "id": "seed-49",
+      "name": "TUBO 40X40X3",
+      "price": 8,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.743Z",
+      "updatedAt": "2026-05-13T11:52:54.743Z"
+    },
+    {
+      "id": "seed-50",
+      "name": "TUBO 60X40",
+      "price": 6.81,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.744Z",
+      "updatedAt": "2026-05-13T11:52:54.744Z"
+    },
+    {
+      "id": "seed-51",
+      "name": "TUBO 100X100",
+      "price": 17.47,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.744Z",
+      "updatedAt": "2026-05-13T11:52:54.744Z"
+    },
+    {
+      "id": "seed-52",
+      "name": "TUBO 80X80",
+      "price": 13.55,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.745Z",
+      "updatedAt": "2026-05-13T11:52:54.745Z"
+    },
+    {
+      "id": "seed-53",
+      "name": "TUBO 60X60",
+      "price": 8.24,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.746Z",
+      "updatedAt": "2026-05-13T11:52:54.746Z"
+    },
+    {
+      "id": "seed-54",
+      "name": "Pletina 40 x 8",
+      "price": 3.2,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.747Z",
+      "updatedAt": "2026-05-13T11:52:54.747Z"
+    },
+    {
+      "id": "seed-55",
+      "name": "Pletina 30 x 6",
+      "price": 1.8,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.748Z",
+      "updatedAt": "2026-05-13T11:52:54.748Z"
+    },
+    {
+      "id": "seed-56",
+      "name": "Pletina 50 x 5",
+      "price": 2.5,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.749Z",
+      "updatedAt": "2026-05-13T11:52:54.749Z"
+    },
+    {
+      "id": "seed-57",
+      "name": "Pletina 40 x 5",
+      "price": 2,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.750Z",
+      "updatedAt": "2026-05-13T11:52:54.750Z"
+    },
+    {
+      "id": "seed-58",
+      "name": "Pletina 30 x 5",
+      "price": 1.5,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.751Z",
+      "updatedAt": "2026-05-13T11:52:54.751Z"
+    },
+    {
+      "id": "seed-59",
+      "name": "Pletina 20 x 4",
+      "price": 0.8,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.754Z",
+      "updatedAt": "2026-05-13T11:52:54.754Z"
+    },
+    {
+      "id": "seed-60",
+      "name": "Angulo 30 x 30",
+      "price": 2.01,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.755Z",
+      "updatedAt": "2026-05-13T11:52:54.755Z"
+    },
+    {
+      "id": "seed-61",
+      "name": "Angulo 40 x 40",
+      "price": 2.73,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.756Z",
+      "updatedAt": "2026-05-13T11:52:54.756Z"
+    },
+    {
+      "id": "seed-62",
+      "name": "Macizo de 12",
+      "price": 1.13,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.756Z",
+      "updatedAt": "2026-05-13T11:52:54.756Z"
+    },
+    {
+      "id": "seed-63",
+      "name": "Macizo de 16",
+      "price": 2.01,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.757Z",
+      "updatedAt": "2026-05-13T11:52:54.757Z"
+    },
+    {
+      "id": "seed-64",
+      "name": "Pasamano de 43",
+      "price": 3.5,
+      "unit": "ml",
+      "categoryId": "cmp4031560001ghg7rkbua1gw",
+      "createdAt": "2026-05-13T11:52:54.758Z",
+      "updatedAt": "2026-05-13T11:52:54.758Z"
+    },
+    {
+      "id": "seed-65",
+      "name": "TUBO 40 X 40",
+      "price": 9.14,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.759Z",
+      "updatedAt": "2026-05-13T11:52:54.759Z"
+    },
+    {
+      "id": "seed-66",
+      "name": "TUBO 30X 10",
+      "price": 4.32,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.760Z",
+      "updatedAt": "2026-05-13T11:52:54.760Z"
+    },
+    {
+      "id": "seed-67",
+      "name": "TUBO 20 X20",
+      "price": 5.27,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.760Z",
+      "updatedAt": "2026-05-13T11:52:54.760Z"
+    },
+    {
+      "id": "seed-68",
+      "name": "TUBO 40 X 10",
+      "price": 6.41,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.761Z",
+      "updatedAt": "2026-05-13T11:52:54.761Z"
+    },
+    {
+      "id": "seed-69",
+      "name": "TUBO 60X20",
+      "price": 9.58,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.762Z",
+      "updatedAt": "2026-05-13T11:52:54.762Z"
+    },
+    {
+      "id": "seed-70",
+      "name": "TUBO  40 X20",
+      "price": 7.25,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.763Z",
+      "updatedAt": "2026-05-13T11:52:54.763Z"
+    },
+    {
+      "id": "seed-71",
+      "name": "TUBO 50 X 20",
+      "price": 8.48,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.764Z",
+      "updatedAt": "2026-05-13T11:52:54.764Z"
+    },
+    {
+      "id": "seed-72",
+      "name": "TUBO 30 X 15",
+      "price": 4.22,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.765Z",
+      "updatedAt": "2026-05-13T11:52:54.765Z"
+    },
+    {
+      "id": "seed-73",
+      "name": "TUBO 50 X 50",
+      "price": 9.11,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.765Z",
+      "updatedAt": "2026-05-13T11:52:54.765Z"
+    },
+    {
+      "id": "seed-74",
+      "name": "TUBO 30 X 20",
+      "price": 4.7,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.767Z",
+      "updatedAt": "2026-05-13T11:52:54.767Z"
+    },
+    {
+      "id": "seed-75",
+      "name": "Pletina 40 x 8",
+      "price": 9.6,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.770Z",
+      "updatedAt": "2026-05-13T11:52:54.770Z"
+    },
+    {
+      "id": "seed-76",
+      "name": "Pletina 30 x 6",
+      "price": 5.41,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.773Z",
+      "updatedAt": "2026-05-13T11:52:54.773Z"
+    },
+    {
+      "id": "seed-77",
+      "name": "Pletina 50 x 5",
+      "price": 7.52,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.774Z",
+      "updatedAt": "2026-05-13T11:52:54.774Z"
+    },
+    {
+      "id": "seed-78",
+      "name": "Pletina 40 x 5",
+      "price": 6.01,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.775Z",
+      "updatedAt": "2026-05-13T11:52:54.775Z"
+    },
+    {
+      "id": "seed-79",
+      "name": "Pletina 30 x 5",
+      "price": 4.51,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.776Z",
+      "updatedAt": "2026-05-13T11:52:54.776Z"
+    },
+    {
+      "id": "seed-80",
+      "name": "Angulo 30 x 30",
+      "price": 5.17,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.777Z",
+      "updatedAt": "2026-05-13T11:52:54.777Z"
+    },
+    {
+      "id": "seed-81",
+      "name": "Angulo 40 x 40",
+      "price": 6.98,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.777Z",
+      "updatedAt": "2026-05-13T11:52:54.777Z"
+    },
+    {
+      "id": "seed-82",
+      "name": "Macizo de 12",
+      "price": 3.4,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.778Z",
+      "updatedAt": "2026-05-13T11:52:54.778Z"
+    },
+    {
+      "id": "seed-83",
+      "name": "Macizo de 16",
+      "price": 6.05,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.779Z",
+      "updatedAt": "2026-05-13T11:52:54.779Z"
+    },
+    {
+      "id": "seed-84",
+      "name": "Pasamano de 43",
+      "price": 9,
+      "unit": "ml",
+      "categoryId": "cmp4031570002ghg7unosc2ls",
+      "createdAt": "2026-05-13T11:52:54.780Z",
+      "updatedAt": "2026-05-13T11:52:54.780Z"
+    },
+    {
+      "id": "seed-85",
+      "name": "TUBO 40 X 40",
+      "price": 6.61,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.781Z",
+      "updatedAt": "2026-05-13T11:52:54.781Z"
+    },
+    {
+      "id": "seed-86",
+      "name": "TUBO 30X 10",
+      "price": 3.13,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.781Z",
+      "updatedAt": "2026-05-13T11:52:54.781Z"
+    },
+    {
+      "id": "seed-87",
+      "name": "TUBO 20 X20",
+      "price": 2.56,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.782Z",
+      "updatedAt": "2026-05-13T11:52:54.782Z"
+    },
+    {
+      "id": "seed-88",
+      "name": "TUBO 40 X 10",
+      "price": 3.91,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.783Z",
+      "updatedAt": "2026-05-13T11:52:54.783Z"
+    },
+    {
+      "id": "seed-89",
+      "name": "TUBO 60X20",
+      "price": 6.28,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.783Z",
+      "updatedAt": "2026-05-13T11:52:54.783Z"
+    },
+    {
+      "id": "seed-90",
+      "name": "TUBO  40 X20",
+      "price": 4.7,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.784Z",
+      "updatedAt": "2026-05-13T11:52:54.784Z"
+    },
+    {
+      "id": "seed-91",
+      "name": "TUBO 50 X 20",
+      "price": 5.5,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.785Z",
+      "updatedAt": "2026-05-13T11:52:54.785Z"
+    },
+    {
+      "id": "seed-92",
+      "name": "TUBO 30 X 15",
+      "price": 3.53,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.785Z",
+      "updatedAt": "2026-05-13T11:52:54.785Z"
+    },
+    {
+      "id": "seed-93",
+      "name": "TUBO 50 X 50",
+      "price": 8.17,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.786Z",
+      "updatedAt": "2026-05-13T11:52:54.786Z"
+    },
+    {
+      "id": "seed-94",
+      "name": "TUBO 30 X 20",
+      "price": 3.91,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.787Z",
+      "updatedAt": "2026-05-13T11:52:54.787Z"
+    },
+    {
+      "id": "seed-95",
+      "name": "Pletina 40 x 8",
+      "price": 3.84,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.787Z",
+      "updatedAt": "2026-05-13T11:52:54.787Z"
+    },
+    {
+      "id": "seed-96",
+      "name": "Pletina 30 x 6",
+      "price": 2.16,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.788Z",
+      "updatedAt": "2026-05-13T11:52:54.788Z"
+    },
+    {
+      "id": "seed-97",
+      "name": "Pletina 50 x 5",
+      "price": 3,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.789Z",
+      "updatedAt": "2026-05-13T11:52:54.789Z"
+    },
+    {
+      "id": "seed-98",
+      "name": "Pletina 40 x 5",
+      "price": 2.4,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.789Z",
+      "updatedAt": "2026-05-13T11:52:54.789Z"
+    },
+    {
+      "id": "seed-99",
+      "name": "Pletina 30 x 5",
+      "price": 1.8,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.790Z",
+      "updatedAt": "2026-05-13T11:52:54.790Z"
+    },
+    {
+      "id": "seed-100",
+      "name": "Angulo 30 x 30",
+      "price": 2.41,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.792Z",
+      "updatedAt": "2026-05-13T11:52:54.792Z"
+    },
+    {
+      "id": "seed-101",
+      "name": "Angulo 40 x 40",
+      "price": 3.28,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.793Z",
+      "updatedAt": "2026-05-13T11:52:54.793Z"
+    },
+    {
+      "id": "seed-102",
+      "name": "Macizo de 12",
+      "price": 1.36,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.795Z",
+      "updatedAt": "2026-05-13T11:52:54.795Z"
+    },
+    {
+      "id": "seed-103",
+      "name": "Macizo de 16",
+      "price": 2.41,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.796Z",
+      "updatedAt": "2026-05-13T11:52:54.796Z"
+    },
+    {
+      "id": "seed-104",
+      "name": "Pasamano de 43",
+      "price": 4.2,
+      "unit": "ml",
+      "categoryId": "cmp4031580003ghg7800ye4ft",
+      "createdAt": "2026-05-13T11:52:54.798Z",
+      "updatedAt": "2026-05-13T11:52:54.798Z"
+    },
+    {
+      "id": "cmp404ctj0002gh2vr78z2fp1",
+      "name": "Siliconas",
+      "price": 12.5,
+      "unit": "ud",
+      "categoryId": "cmp403khm0000gh2vw550cl4c",
+      "createdAt": "2026-05-13T11:53:56.455Z",
+      "updatedAt": "2026-05-13T11:53:56.455Z"
+    }
+  ]
+}
