@@ -102,6 +102,7 @@ export function QuoteForm({
   const [products, setProducts] = useState<Product[]>([])
   const [productSearch, setProductSearch] = useState('')
   const [productCategoryFilter, setProductCategoryFilter] = useState('all')
+  const [isSearchFocused, setIsSearchFocused] = useState(false)
 
   // Form state - initialize from editingQuote if available
   const [clientId, setClientId] = useState<string>(editingQuote?.clientId || 'none')
@@ -192,6 +193,7 @@ export function QuoteForm({
     }
 
     setSelectedProductId('')
+    setProductSearch('')
     setAddQuantity('1')
   }
 
@@ -379,21 +381,12 @@ export function QuoteForm({
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex gap-2">
-                <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <Input
-                    placeholder="Buscar producto..."
-                    value={productSearch}
-                    onChange={(e) => setProductSearch(e.target.value)}
-                    className="pl-9"
-                  />
-                </div>
                 <Select value={productCategoryFilter} onValueChange={setProductCategoryFilter}>
-                  <SelectTrigger className="w-44">
+                  <SelectTrigger className="w-44 bg-white">
                     <SelectValue placeholder="Categoría" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">Todas</SelectItem>
+                    <SelectItem value="all">Todas las categorías</SelectItem>
                     {categories.map((cat) => (
                       <SelectItem key={cat.id} value={cat.id}>
                         {cat.name}
@@ -401,36 +394,61 @@ export function QuoteForm({
                     ))}
                   </SelectContent>
                 </Select>
-              </div>
-              <div className="flex gap-2">
-                <Select value={selectedProductId} onValueChange={setSelectedProductId}>
-                  <SelectTrigger className="flex-1">
-                    <SelectValue placeholder="Seleccionar producto" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {products.map((product) => (
-                      <SelectItem key={product.id} value={product.id}>
-                        <span className="flex items-center gap-2">
-                          <Badge variant="secondary" className="text-[10px] px-1 py-0">
-                            {product.category.name}
-                          </Badge>
-                          {product.name} — {product.price.toFixed(2)}€/{product.unit}
-                        </span>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <div className="relative flex-1">
+                  <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
+                  <Input
+                    placeholder="Escribe para buscar un producto..."
+                    value={productSearch}
+                    onChange={(e) => {
+                      setProductSearch(e.target.value)
+                      if (selectedProductId) setSelectedProductId('')
+                    }}
+                    onFocus={() => setIsSearchFocused(true)}
+                    onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                    className="pl-9 bg-white"
+                  />
+                  {isSearchFocused && products.length > 0 && (
+                    <div className="absolute z-10 w-full mt-1 bg-white border border-zinc-200 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                      {products.map((product) => (
+                        <div
+                          key={product.id}
+                          className="px-3 py-2 cursor-pointer hover:bg-zinc-50 flex flex-col gap-1 border-b border-zinc-50 last:border-0"
+                          onClick={() => {
+                            setSelectedProductId(product.id)
+                            setProductSearch(product.name)
+                            setIsSearchFocused(false)
+                          }}
+                        >
+                          <span className="text-sm font-medium text-zinc-900">{product.name}</span>
+                          <div className="flex items-center gap-2">
+                            <Badge variant="secondary" className="text-[10px] px-1 py-0 shadow-none bg-zinc-100 text-zinc-600 font-normal">
+                              {product.category.name}
+                            </Badge>
+                            <span className="text-[12px] text-zinc-500 tabular-nums">
+                              {product.price.toFixed(2)}€/{product.unit}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
                 <Input
                   type="number"
                   value={addQuantity}
                   onChange={(e) => setAddQuantity(e.target.value)}
-                  className="w-24"
+                  className="w-24 bg-white"
                   min="0.01"
                   step="0.01"
                   placeholder="Cant."
                 />
-                <Button className="bg-emerald-600 hover:bg-emerald-700" onClick={handleAddProduct}>
-                  <Plus className="h-4 w-4" />
+                <Button 
+                  className="bg-zinc-900 text-white hover:bg-zinc-800 shadow-sm" 
+                  onClick={handleAddProduct}
+                  disabled={!selectedProductId}
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  Añadir
                 </Button>
               </div>
             </CardContent>
