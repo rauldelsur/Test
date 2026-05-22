@@ -3,33 +3,26 @@ import { NextResponse } from 'next/server'
 
 export async function GET() {
   try {
-    const [
-      totalProjects,
-      totalQuotes,
-      totalProducts,
-      totalClients,
-      recentQuotes,
-      quotesByStatus,
-      settings,
-    ] = await Promise.all([
-      db.project.count(),
-      db.quote.count(),
-      db.product.count(),
-      db.client.count(),
-      db.quote.findMany({
-        take: 5,
-        orderBy: { createdAt: 'desc' },
-        include: {
-          client: true,
-          items: true,
-        },
-      }),
-      db.quote.groupBy({
-        by: ['status'],
-        _count: { status: true },
-      }),
-      db.companySettings.findFirst(),
-    ])
+    const totalProjects = await db.project.count()
+    const totalQuotes = await db.quote.count()
+    const totalProducts = await db.product.count()
+    const totalClients = await db.client.count()
+    
+    const recentQuotes = await db.quote.findMany({
+      take: 5,
+      orderBy: { createdAt: 'desc' },
+      include: {
+        client: true,
+        items: true,
+      },
+    })
+    
+    const quotesByStatus = await db.quote.groupBy({
+      by: ['status'],
+      _count: { status: true },
+    })
+    
+    const settings = await db.companySettings.findFirst()
 
     // Calculate totals for recent quotes
     const recentQuotesWithTotals = recentQuotes.map((quote) => {
