@@ -30,11 +30,12 @@ interface QuoteDetailProps {
     client: { name: string; phone: string | null; email: string | null; address: string | null } | null
     items: Array<{
       id: string
-      productId: string
+      productId: string | null
+      customName: string | null
       quantity: number
       unitPrice: number
       subtotal: number
-      product: { name: string; price: number; unit: string; category: { name: string } }
+      product: { name: string; price: number; unit: string; category: { name: string } } | null
     }>
   }
   settings: {
@@ -155,10 +156,19 @@ export function QuoteDetail({ quote, settings, onBack }: QuoteDetailProps) {
                   <TableRow key={item.id}>
                     <TableCell className="text-center text-muted-foreground">{index + 1}</TableCell>
                     <TableCell>
-                      <div className="font-medium">{item.product.name}</div>
-                      <div className="text-xs text-muted-foreground">{item.product.category.name}</div>
+                      <div className="font-medium">
+                        {item.product?.name || item.customName || 'Artículo libre'}
+                        {!item.product && (
+                          <Badge variant="outline" className="ml-2 text-[10px] text-zinc-500 border-zinc-200 print:hidden">
+                            Libre
+                          </Badge>
+                        )}
+                      </div>
+                      {item.product && (
+                        <div className="text-xs text-muted-foreground">{item.product.category.name}</div>
+                      )}
                     </TableCell>
-                    <TableCell className="text-center">{item.quantity} {item.product.unit}</TableCell>
+                    <TableCell className="text-center">{item.quantity} {item.product?.unit || 'ud'}</TableCell>
                     <TableCell className="text-right font-mono">{item.unitPrice.toFixed(2)}€</TableCell>
                     <TableCell className="text-right font-mono font-semibold">{item.subtotal.toFixed(2)}€</TableCell>
                   </TableRow>

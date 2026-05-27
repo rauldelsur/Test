@@ -67,8 +67,9 @@ export async function PUT(
 
     if (items !== undefined) {
       updateData.items = {
-        create: items.map((item: { productId: string; quantity: number; unitPrice: number; subtotal: number }) => ({
-          productId: item.productId,
+        create: items.map((item: { productId?: string; customName?: string; quantity: number; unitPrice: number; subtotal: number }) => ({
+          productId: item.productId || null,
+          customName: item.customName || null,
           quantity: parseFloat(String(item.quantity)),
           unitPrice: parseFloat(String(item.unitPrice)),
           subtotal: parseFloat(String(item.subtotal)),

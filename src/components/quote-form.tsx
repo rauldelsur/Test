@@ -45,7 +45,7 @@ interface Client {
 }
 
 interface QuoteFormItem {
-  productId: string
+  productId: string | null
   productName: string
   quantity: number
   unitPrice: number
@@ -65,8 +65,9 @@ interface QuoteFormProps {
     validityDays: number
     notes: string | null
     items: Array<{
-      productId: string
-      product: { name: string; price: number; unit: string }
+      productId: string | null
+      product: { name: string; price: number; unit: string } | null
+      customName: string | null
       quantity: number
       unitPrice: number
       subtotal: number
@@ -80,7 +81,7 @@ interface QuoteFormProps {
     margin: number
     validityDays: number
     notes: string | null
-    items: Array<{ productId: string; quantity: number; unitPrice: number; subtotal: number }>
+    items: Array<{ productId?: string | null; customName?: string | null; quantity: number; unitPrice: number; subtotal: number }>
   }) => void
   onCancel: () => void
   defaultMargin: number
@@ -114,7 +115,7 @@ export function QuoteForm({
   const [items, setItems] = useState<QuoteFormItem[]>(
     editingQuote?.items.map((item) => ({
       productId: item.productId,
-      productName: item.product.name,
+      productName: item.product?.name || item.customName || 'Artículo sin nombre',
       quantity: item.quantity,
       unitPrice: item.unitPrice,
       subtotal: item.subtotal,
@@ -124,6 +125,11 @@ export function QuoteForm({
   // Add product state
   const [selectedProductId, setSelectedProductId] = useState('')
   const [addQuantity, setAddQuantity] = useState('1')
+  
+  // Custom item state
+  const [customName, setCustomName] = useState('')
+  const [customPrice, setCustomPrice] = useState('')
+  const [customQuantity, setCustomQuantity] = useState('1')
 
   // Form resets via key prop from parent when switching between create/edit
 
@@ -197,6 +203,38 @@ export function QuoteForm({
     setAddQuantity('1')
   }
 
+  const handleAddCustomItem = () => {
+    if (!customName.trim()) {
+      toast({ title: 'Error', description: 'Introduce un nombre para el artículo', variant: 'destructive' })
+      return
+    }
+    const quantity = parseFloat(customQuantity)
+    if (isNaN(quantity) || quantity <= 0) {
+      toast({ title: 'Error', description: 'La cantidad debe ser mayor que 0', variant: 'destructive' })
+      return
+    }
+    const price = parseFloat(customPrice)
+    if (isNaN(price) || price < 0) {
+      toast({ title: 'Error', description: 'El precio debe ser un número válido', variant: 'destructive' })
+      return
+    }
+
+    setItems([
+      ...items,
+      {
+        productId: null,
+        productName: customName,
+        quantity,
+        unitPrice: price,
+        subtotal: quantity * price,
+      },
+    ])
+
+    setCustomName('')
+    setCustomPrice('')
+    setCustomQuantity('1')
+  }
+
   const handleRemoveItem = (index: number) => {
     setItems(items.filter((_, i) => i !== index))
   }
@@ -247,6 +285,7 @@ export function QuoteForm({
       notes: notes || null,
       items: items.map((item) => ({
         productId: item.productId,
+        customName: item.productId ? null : item.productName,
         quantity: item.quantity,
         unitPrice: item.unitPrice,
         subtotal: item.subtotal,
@@ -474,7 +513,51 @@ export function QuoteForm({
                   disabled={!selectedProductId}
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  Añadir
+                  Añadir Catálogo
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Add Custom Item */}
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-sm">Añadir Artículo Libre</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="flex gap-2 items-center">
+                <Input
+                  placeholder="Nombre o descripción del artículo..."
+                  value={customName}
+                  onChange={(e) => setCustomName(e.target.value)}
+                  className="flex-1 bg-white"
+                />
+                <Input
+                  type="number"
+                  placeholder="Precio/ud"
+                  value={customPrice}
+                  onChange={(e) => setCustomPrice(e.target.value)}
+                  className="w-24 bg-white"
+                  min="0"
+                  step="0.01"
+                />
+                <Input
+                  type="number"
+                  placeholder="Cant."
+                  value={customQuantity}
+                  onChange={(e) => setCustomQuantity(e.target.value)}
+                  className="w-20 bg-white"
+                  min="0.01"
+                  step="0.01"
+                />
+                <Button 
+                  variant="outline"
+                  className="shadow-sm border-zinc-200" 
+                  onClick={handleAddCustomItem}
+                  disabled={!customName.trim() || !customPrice}
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  Añadir Libre
                 </Button>
               </div>
             </CardContent>
@@ -506,8 +589,15 @@ export function QuoteForm({
                     </TableHeader>
                     <TableBody>
                       {items.map((item, index) => (
-                        <TableRow key={item.productId}>
-                          <TableCell className="font-medium text-sm">{item.productName}</TableCell>
+                        <TableRow key={index}>
+                          <TableCell className="font-medium text-sm">
+                            {item.productName}
+                            {!item.productId && (
+                              <Badge variant="outline" className="ml-2 text-[10px] text-zinc-500 border-zinc-200">
+                                Libre
+                              </Badge>
+                            )}
+                          </TableCell>
                           <TableCell>
                             <Input
                               type="number"
