@@ -61,6 +61,7 @@ interface Product {
   categoryId: string
   category: { id: string; name: string }
   createdAt: string
+  updatedAt: string
 }
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
@@ -364,7 +365,8 @@ export function ProductsView() {
                 <TableRow>
                   <TableHead>Producto</TableHead>
                   <TableHead>Categoría</TableHead>
-                  <TableHead className="text-right">Precio (€/ml)</TableHead>
+                  <TableHead className="text-right">Precio (€/ud)</TableHead>
+                  <TableHead className="text-right">F. Act.</TableHead>
                   <TableHead className="w-10"></TableHead>
                 </TableRow>
               </TableHeader>
@@ -389,6 +391,9 @@ export function ProductsView() {
                       </TableCell>
                       <TableCell className="text-right font-mono">
                         {product.price.toFixed(2)}€
+                      </TableCell>
+                      <TableCell className="text-right text-muted-foreground text-xs tabular-nums">
+                        {new Date(product.updatedAt || product.createdAt).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: '2-digit' })}
                       </TableCell>
                       <TableCell>
                         <DropdownMenu>
